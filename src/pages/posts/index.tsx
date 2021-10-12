@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Prismic from '@prismicio/client';
 import PrismicDom, { RichText } from 'prismic-dom';
 import { GetStaticProps } from 'next';
@@ -27,7 +28,8 @@ export default function Posts({ posts }: PostsProps){
             <main className={styles.container}>
                 <div className={styles.posts}>
                     { posts?.map(post => (
-                        <a key={post.slug} href="#">
+                        <Link key={post.slug} href={`/posts/${post.slug}`}>
+                        <a>
                             <time>{post.updatedAt}</time>
                             <strong>
                                 {post.title}
@@ -36,6 +38,7 @@ export default function Posts({ posts }: PostsProps){
                                 {post.excerpt}
                             </p>
                         </a>
+                        </Link>
                     )) }
                 </div>
             </main>
